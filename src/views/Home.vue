@@ -1,18 +1,80 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="home">
+        <div class="main-cover">
+            <div class="overlay"></div>
+
+            <div class="main-content">
+                <div class="title">
+                    <h1>Welcome to <span>V</span>Movies</h1>
+                </div>
+
+                <p>Search your favorite Movie!</p>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    name: "Home",
+};
 </script>
+
+<style lang="scss">
+.home {
+    .main-cover {
+        position: relative;
+        height: 100vh;
+        background-image: url("../assets/main.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: 0;
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .main-content {
+            position: relative;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+
+            .title {
+                margin-bottom: 26px;
+
+                h1 {
+                    color: #fff;
+                    font-size: 56px;
+
+                    @media screen and (max-width: 600px) {
+                        font-size: 32px;
+                    }
+                }
+
+                span {
+                    color: #34d399;
+                }
+            }
+
+            p {
+                color: #fff;
+                margin-bottom: 26px;
+            }
+        }
+    }
+}
+</style>

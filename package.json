@@ -1,6 +1,7 @@
 {
   "name": "vmovies",
   "version": "0.1.0",
+  "author": "Anjo Musni",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
