@@ -13,7 +13,6 @@ export default {
 
 <style lang="scss">
 .footer {
-    position: absolute;
     left: 0;
     bottom: 0;
     padding: 10px;
@@ -23,7 +22,7 @@ export default {
     justify-content: center;
     color: #fff;
     font-size: 12px;
-    background-color: #1e293b;
+    // background-color: #1e293b;
 
     a {
         color: #34d399;

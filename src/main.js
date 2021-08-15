@@ -1,5 +1,19 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from "vue";
+import { createStore } from "vuex";
+import App from "./App.vue";
+import router from "./router";
 
-createApp(App).use(router).mount('#app')
+const store = createStore({
+	state() {
+		return {
+			loading: false,
+			search: "",
+			movies: [],
+		};
+	},
+});
+
+createApp(App)
+	.use(store)
+	.use(router)
+	.mount("#app");

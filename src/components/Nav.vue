@@ -4,9 +4,13 @@
             <router-link to="/" class="title"><span>V</span>Movies</router-link>
 
             <div class="search-form">
-                <form action="/">
+                <form @submit.prevent="SearchMovies()">
                     <div class="search-group">
-                        <input type="text" placeholder="Search..." />
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            v-model="search"
+                        />
                         <button type="submit">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -30,8 +34,27 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import { useRouter} from 'vue-router'
+
 export default {
     name: "Nav",
+    setup() {
+        const search = ref('');
+        const router = useRouter();
+
+        const SearchMovies = () => {
+            if (search.value != "") {
+                router.replace({name: 'SearchResult', params: {search: search.value}});
+                search.value = '';
+            }
+        };
+
+        return {
+            search,
+            SearchMovies,
+        };
+    },
 };
 </script>
 
@@ -100,7 +123,11 @@ nav {
                     transition: 0.3s ease;
 
                     &:hover {
-                        background-color: #10b981;
+                        background-color: #059669;
+                    }
+
+                    svg {
+                        color: #1e293b;
                     }
                 }
             }

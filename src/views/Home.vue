@@ -8,7 +8,10 @@
                     <h1>Welcome to <span>V</span>Movies</h1>
                 </div>
 
-                <p>Search your favorite Movie!</p>
+                <p>
+                    <span>V</span>Movies is a simple Movie Information App powered by <a href="http://www.omdbapi.com/" target="__blank">OMDb API.</a><br>
+                    Developed by <a href="https://anjomusni.herokuapp.com/" target="__blank">Anjo Musni</a> and built with Vuejs.
+                </p>
             </div>
         </div>
     </div>
@@ -71,8 +74,18 @@ export default {
             }
 
             p {
+                text-align: center;
                 color: #fff;
                 margin-bottom: 26px;
+
+                span {
+                    color: #34d399;
+                }
+
+                a {
+                    color: #34d399;
+                    margin-left: 3px;
+                }
             }
         }
     }

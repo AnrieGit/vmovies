@@ -1,19 +1,19 @@
 <template>
     <Nav />
     <main>
-        <router-view />
+        <router-view :key="$route.path"/>
     </main>
-    <Footer />
 </template>
 
 <script>
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import Nav from "@/components/Nav";
 
 export default {
     components: {
         Nav,
-        Footer,
+    },
+    created() {
+        document.title = 'VMovies'
     },
 };
 </script>
@@ -32,6 +32,23 @@ export default {
     }
 }
 
+::-webkit-scrollbar {
+    width: 15px;
+    left:-100px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #34d399;
+    background-clip: padding-box;
+    border: 4px solid rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #059669;
+}
+
 body {
     background-color: #0f172a;
 }
@@ -45,7 +62,7 @@ h1 {
     font-size: 28px;
 
     span {
-        color: #10b981;
+        color: #34d399;
     }
 }
 </style>
