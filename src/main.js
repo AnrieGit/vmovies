@@ -7,8 +7,6 @@ const store = createStore({
 	state() {
 		return {
 			loading: false,
-			search: "",
-			movies: [],
 		};
 	},
 });

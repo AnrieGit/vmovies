@@ -1,18 +1,16 @@
 <template>
-    <div class="home">
-        <div class="main-cover">
-            <div class="overlay"></div>
+    <div class="main-cover">
+        <div class="overlay"></div>
 
-            <div class="main-content">
-                <div class="title">
-                    <h1>Welcome to <span>V</span>Movies</h1>
-                </div>
-
-                <p>
-                    <span>V</span>Movies is a simple Movie Information App powered by <a href="http://www.omdbapi.com/" target="__blank">OMDb API.</a><br>
-                    Developed by <a href="https://anjomusni.herokuapp.com/" target="__blank">Anjo Musni</a> and built with Vuejs.
-                </p>
+        <div class="main-content">
+            <div class="title">
+                <h1>Welcome to <span>V</span>Movies</h1>
             </div>
+
+            <p>
+                <span>V</span>Movies is a simple Movie Information App powered by <a href="http://www.omdbapi.com/" target="__blank">OMDb API.</a><br>
+                Developed by <a href="https://anjomusni.herokuapp.com/" target="__blank">Anjo Musni</a> and built with Vuejs.
+            </p>
         </div>
     </div>
 </template>
@@ -25,67 +23,69 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.home {
-    .main-cover {
+<style lang="scss" scoped>
+.main-cover {
+    position: relative;
+    height: 100vh;
+    background-image: url("../assets/main.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+    }
+
+    .main-content {
         position: relative;
-        height: 100vh;
-        background-image: url("../assets/main.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        z-index: 0;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
+        .title {
+            margin-bottom: 26px;
 
-        .main-content {
-            position: relative;
-            margin: 0 auto;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
+            h1 {
+                color: #fff;
+                font-size: 56px;
+                transition: all 0.3s ease;
 
-            .title {
-                margin-bottom: 26px;
-
-                h1 {
-                    color: #fff;
-                    font-size: 56px;
-
-                    @media screen and (max-width: 600px) {
-                        font-size: 32px;
-                    }
-                }
-
-                span {
-                    color: #34d399;
+                @media screen and (max-width: 600px) {
+                    font-size: 32px;
                 }
             }
 
-            p {
-                text-align: center;
-                color: #fff;
-                margin-bottom: 26px;
+            span {
+                color: #34d399;
+            }
+        }
 
-                span {
-                    color: #34d399;
-                }
+        p {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 26px;
+            padding: 0 26px 0 26px;
+            line-height: 1.4rem;
+            transition: all 0.3s ease;
 
-                a {
-                    color: #34d399;
-                    margin-left: 3px;
-                }
+            span {
+                color: #34d399;
+            }
+
+            a {
+                color: #34d399;
+                margin-left: 3px;
             }
         }
     }

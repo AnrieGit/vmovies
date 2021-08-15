@@ -1,5 +1,5 @@
 <template>
-    <div class="search-result">
+    <div v-if="!loading" class="search-result">
         <div class="movie-lists">
             <div class="movie" v-for="movie in movies" :key="movie.imdbID">
                 <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
@@ -16,37 +16,46 @@
             </div>
         </div>
     </div>
+    <Loader v-else/>
 </template>
 
 <script>
 import { onMounted, ref } from "vue";
 import { useRoute, } from 'vue-router'
 import env from "@/env.js";
+import Loader from '../components/Loader';
 
 export default {
     name: 'SearchResult',
     setup() {
+        let loading = ref(false);
         const movies = ref([]);
         const route = useRoute();
 
         onMounted(async () => {
+            loading.value = true;
             const response = await fetch(
                 `http://www.omdbapi.com/?apikey=${env.apikey}&s=${route.params.search}`
             )
 
             const data = await response.json();
+            loading.value = false;
 
             movies.value = data.Search
         }); 
         
         return {
+            loading,
             movies,
         }
+    },
+    components: {
+        Loader,
     }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .search-result {
     display: flex;
     justify-content: center;

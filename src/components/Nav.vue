@@ -72,9 +72,9 @@ nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 100%;
+        height: 70px;
         max-width: 1200px;
-        padding: 15px;
+        padding: 0 15px 0 15px;
 
         .title {
             color: #fff;
