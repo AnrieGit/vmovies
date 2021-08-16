@@ -53,7 +53,6 @@
 <script>
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import env from '@/env.js';
 import Loader from '../components/Loader';
 
 export default {
@@ -64,10 +63,11 @@ export default {
         const route = useRoute();
         const poster = ref('');
         const rating = ref([]);
+        const apikey = ref(process.env.VUE_APP_API_KEY);
 
         onBeforeMount(async () => {
             loading.value = true;
-            const response = await fetch(`http://www.omdbapi.com/?apikey=${env.apikey}&i=${route.params.id}&plot=full`);
+            const response = await fetch(`http://www.omdbapi.com/?apikey=${apikey.value}&i=${route.params.id}&plot=full`);
             const data = await response.json();
             loading.value = false;
 
@@ -75,7 +75,6 @@ export default {
             const poster1 = movie.value.Poster;
             poster.value = poster1.replace('300', '1000');
             rating.value = movie.value.Ratings;
-            console.log(loading.value);
         });
 
         return {

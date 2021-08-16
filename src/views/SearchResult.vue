@@ -22,7 +22,6 @@
 <script>
 import { onMounted, ref } from "vue";
 import { useRoute, } from 'vue-router'
-import env from "@/env.js";
 import Loader from '../components/Loader';
 
 export default {
@@ -31,11 +30,12 @@ export default {
         let loading = ref(false);
         const movies = ref([]);
         const route = useRoute();
+        const apikey = ref(process.env.VUE_APP_API_KEY);
 
         onMounted(async () => {
             loading.value = true;
             const response = await fetch(
-                `http://www.omdbapi.com/?apikey=${env.apikey}&s=${route.params.search}`
+                `http://www.omdbapi.com/?apikey=${apikey.value}&s=${route.params.search}`
             )
 
             const data = await response.json();
