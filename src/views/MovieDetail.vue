@@ -67,7 +67,7 @@ export default {
 
         onBeforeMount(async () => {
             loading.value = true;
-            const response = await fetch(`http://www.omdbapi.com/?apikey=${apikey.value}&i=${route.params.id}&plot=full`);
+            const response = await fetch(`https://www.omdbapi.com/?apikey=${apikey.value}&i=${route.params.id}&plot=full`);
             const data = await response.json();
             loading.value = false;
 
@@ -100,7 +100,7 @@ export default {
         position: relative;
         height: 400px;
         width: 100%;
-        background-position: 50% 20%;
+        background-position: 50% 30%;
         background-repeat: no-repeat;
         background-size: cover;
         transition: all 0.3s ease;

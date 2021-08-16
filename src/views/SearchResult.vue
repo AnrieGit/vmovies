@@ -35,7 +35,7 @@ export default {
         onMounted(async () => {
             loading.value = true;
             const response = await fetch(
-                `http://www.omdbapi.com/?apikey=${apikey.value}&s=${route.params.search}`
+                `https://www.omdbapi.com/?apikey=${apikey.value}&s=${route.params.search}`
             )
 
             const data = await response.json();
