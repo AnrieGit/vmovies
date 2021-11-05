@@ -1,28 +1,29 @@
 <template>
-    <div v-if="!loading" class="search-result">
-        <div class="movie-lists">
-            <div class="movie" v-for="movie in movies" :key="movie.imdbID">
-                <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
-                    <div class="movie-image">
-                        <div class="overlay"></div>
-                        <img :src="movie.Poster" alt="Movie Image">
-                        <div class="type">{{ movie.Type }}</div>
-                    </div>
-                    <div class="movie-detail">
-                        <p class="year">{{ movie.Year }}</p>
-                        <h3>{{ movie.Title }}</h3>
-                    </div>
-                </router-link>
+    <div class="search-result">
+        <div class="search-result">
+            <div class="movie-lists">
+                <div class="movie" v-for="movie in movies" :key="movie.imdbID">
+                    <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
+                        <div class="movie-image">
+                            <div class="overlay"></div>
+                            <img :src="movie.Poster" alt="Movie Image">
+                            <div class="type">{{ movie.Type }}</div>
+                        </div>
+                        <div class="movie-detail">
+                            <p class="year">{{ movie.Year }}</p>
+                            <h3>{{ movie.Title }}</h3>
+                        </div>
+                    </router-link>
+                </div>
             </div>
         </div>
     </div>
-    <Loader v-else/>
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { useRoute, } from 'vue-router'
-import Loader from '../components/Loader';
+import Nprogress from 'nprogress';
 
 export default {
     name: 'SearchResult',
@@ -32,14 +33,19 @@ export default {
         const route = useRoute();
         const apikey = ref(process.env.VUE_APP_API_KEY);
 
-        onMounted(async () => {
+        onBeforeMount(async () => {
+            Nprogress.configure({ showSpinner: false });
+
             loading.value = true;
+            Nprogress.start();
             const response = await fetch(
                 `https://www.omdbapi.com/?apikey=${apikey.value}&s=${route.params.search}`
             )
 
             const data = await response.json();
             loading.value = false;
+            Nprogress.done();
+            Nprogress.remove();
 
             movies.value = data.Search
         }); 
@@ -48,9 +54,6 @@ export default {
             loading,
             movies,
         }
-    },
-    components: {
-        Loader,
     }
 }
 </script>

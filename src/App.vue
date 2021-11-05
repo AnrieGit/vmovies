@@ -34,7 +34,7 @@ export default {
 
 ::-webkit-scrollbar {
     width: 15px;
-    left:-100px;
+    left: -100px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -64,5 +64,13 @@ h1 {
     span {
         color: #34d399;
     }
+}
+
+#nprogress .bar {
+    background: #34d399 !important;
+}
+
+#nprogress .peg {
+    box-shadow: 0 0 10px #34d399, 0 0 5px #34d399;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!loading" class="container">
+    <div v-show="!loading" class="container">
         <div class="cover" :style="{'backgroundImage': `url(${poster})`}"></div>
         
         <div class="movie-content">
@@ -47,13 +47,12 @@
             </div>
         </div>
     </div>
-    <Loader v-else/>
 </template>
 
 <script>
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import Loader from '../components/Loader';
+import Nprogress from 'nprogress';
 
 export default {
     name: "MovieDetailDefault",
@@ -66,10 +65,14 @@ export default {
         const apikey = ref(process.env.VUE_APP_API_KEY);
 
         onBeforeMount(async () => {
+            Nprogress.configure({ showSpinner: false });
+
             loading.value = true;
+            Nprogress.start();
             const response = await fetch(`https://www.omdbapi.com/?apikey=${apikey.value}&i=${route.params.id}&plot=full`);
             const data = await response.json();
             loading.value = false;
+            Nprogress.done();
 
             movie.value = data;
             const poster1 = movie.value.Poster;
@@ -84,9 +87,6 @@ export default {
             poster,
             rating,
         }
-    },
-    components: {
-        Loader,
     }
 };
 </script>
